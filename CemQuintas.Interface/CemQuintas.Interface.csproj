@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{980A5261-4AAB-4D77-B838-D370EBD66ED0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CemQuintas.Interface</RootNamespace>
+    <AssemblyName>CemQuintas.Interface</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Regisoft">
+      <HintPath>..\..\Regisoft\Regisoft\bin\Regisoft.dll</HintPath>
+    </Reference>
+    <Reference Include="Regisoft.Camadas.Interface">
+      <HintPath>..\..\Regisoft\Regisoft.Camadas.Interface\bin\Regisoft.Camadas.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BO\IBOFactory.cs" />
+    <Compile Include="BO\ICartorioBO.cs" />
+    <Compile Include="BO\ICidadaoBO.cs" />
+    <Compile Include="BO\ICidadeBO.cs" />
+    <Compile Include="BO\IDocumentoBO.cs" />
+    <Compile Include="BO\IExumacaoBO.cs" />
+    <Compile Include="BO\IFunerariaBO.cs" />
+    <Compile Include="BO\ILogOperacaoBO.cs" />
+    <Compile Include="BO\IPerfilBO.cs" />
+    <Compile Include="BO\IQuadraBO.cs" />
+    <Compile Include="BO\IQuadroBO.cs" />
+    <Compile Include="BO\IRacaBO.cs" />
+    <Compile Include="BO\IResponsavelBO.cs" />
+    <Compile Include="BO\ISepultamentoBO.cs" />
+    <Compile Include="BO\ISexoBO.cs" />
+    <Compile Include="BO\ITestemunhaBO.cs" />
+    <Compile Include="BO\ITipoLogradouroBO.cs" />
+    <Compile Include="BO\IUfBO.cs" />
+    <Compile Include="BO\IUsuarioBO.cs" />
+    <Compile Include="DAO\ICartorioDAO.cs" />
+    <Compile Include="DAO\ICidadaoDAO.cs" />
+    <Compile Include="DAO\ICidadeDAO.cs" />
+    <Compile Include="DAO\IDAOFactory.cs" />
+    <Compile Include="DAO\IDocumentoDAO.cs" />
+    <Compile Include="DAO\IExumacaoDAO.cs" />
+    <Compile Include="DAO\IFunerariaDAO.cs" />
+    <Compile Include="DAO\ILogOperacaoDAO.cs" />
+    <Compile Include="DAO\IPerfilDAO.cs" />
+    <Compile Include="DAO\IQuadraDAO.cs" />
+    <Compile Include="DAO\IQuadroDAO.cs" />
+    <Compile Include="DAO\IRacaDAO.cs" />
+    <Compile Include="DAO\IResponsavelDAO.cs" />
+    <Compile Include="DAO\ISepultamentoDAO.cs" />
+    <Compile Include="DAO\ISexoDAO.cs" />
+    <Compile Include="DAO\ITestemunhaDAO.cs" />
+    <Compile Include="DAO\ITipoLogradouroDAO.cs" />
+    <Compile Include="DAO\IUfDAO.cs" />
+    <Compile Include="DAO\IUsuarioDAO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CemQuintas.OR\CemQuintas.OR.csproj">
+      <Project>{354e3593-0126-4c12-9814-1a6625a05207}</Project>
+      <Name>CemQuintas.OR</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
