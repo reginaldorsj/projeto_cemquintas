@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="CemQuintas.OR" namespace="CemQuintas.OR" default-lazy="false">
+	<class name="CemQuintas.OR.Testemunha,CemQuintas.OR" table="TESTEMUNHA">
+
+		<id name="IdTestemunha" column="ID_TESTEMUNHA" type="Int64" unsaved-value="0">
+			<generator class="sequence" >
+				<param name="sequence">GEN_TESTEMUNHA_ID</param>
+			</generator>
+		</id>
+		<property column="NOME" type="String" name="Nome" not-null="true" length="60" />
+		<property column="RG" type="String" name="Rg" length="15" />
+		<property column="TELEFONE" type="String" name="Telefone" length="25" />
+		
+	</class>
+</hibernate-mapping>

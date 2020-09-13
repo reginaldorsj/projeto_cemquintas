@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="CemQuintas.OR" namespace="CemQuintas.OR" default-lazy="false">
+	<class name="CemQuintas.OR.Cidade,CemQuintas.OR" table="CIDADE">
+
+		<id name="IdCidade" column="ID_CIDADE" type="Int64" unsaved-value="0">
+			<generator class="sequence" >
+				<param name="sequence">GEN_CIDADE_ID</param>
+			</generator>
+		</id>
+		<many-to-one name="IdUf" column="ID_UF" class="Uf" not-null="true"  />
+		<property column="DESCRICAO" type="String" name="Descricao" not-null="true" length="72" />
+		<property column="CEP" type="String" name="Cep" length="8" />
+		
+	</class>
+</hibernate-mapping>

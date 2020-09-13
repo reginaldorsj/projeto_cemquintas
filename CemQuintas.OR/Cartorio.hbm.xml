@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="CemQuintas.OR" namespace="CemQuintas.OR" default-lazy="false">
+	<class name="CemQuintas.OR.Cartorio,CemQuintas.OR" table="CARTORIO">
+
+		<id name="IdCartorio" column="ID_CARTORIO" type="Int64" unsaved-value="0">
+			<generator class="sequence" >
+				<param name="sequence">GEN_CARTORIO_ID</param>
+			</generator>
+		</id>
+		<property column="NOME" type="String" name="Nome" not-null="true" length="100" />
+		<property column="DISTRITO" type="String" name="Distrito" not-null="true" length="35" />
+		<many-to-one name="IdTipoLogradouro" column="ID_TIPO_LOGRADOURO" class="TipoLogradouro" not-null="true"  />
+		<property column="LOGRADOURO" type="String" name="Logradouro" not-null="true" length="75" />
+		<property column="NUMERO" type="String" name="Numero" not-null="true" length="15" />
+		<property column="BAIRRO" type="String" name="Bairro" not-null="true" length="50" />
+		<property column="CEP" type="String" name="Cep" not-null="true" length="8" />
+		<many-to-one name="IdCidade" column="ID_CIDADE" class="Cidade" />
+		
+	</class>
+</hibernate-mapping>

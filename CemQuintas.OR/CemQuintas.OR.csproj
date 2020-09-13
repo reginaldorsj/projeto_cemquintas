@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{354E3593-0126-4C12-9814-1A6625A05207}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CemQuintas.OR</RootNamespace>
+    <AssemblyName>CemQuintas.OR</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Regisoft">
+      <HintPath>..\..\Regisoft\Regisoft\bin\Regisoft.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cartorio.cs" />
+    <Compile Include="Cidadao.cs" />
+    <Compile Include="Cidade.cs" />
+    <Compile Include="Documento.cs" />
+    <Compile Include="Exumacao.cs" />
+    <Compile Include="Funeraria.cs" />
+    <Compile Include="LogOperacao.cs" />
+    <Compile Include="Perfil.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quadra.cs" />
+    <Compile Include="Quadro.cs" />
+    <Compile Include="Raca.cs" />
+    <Compile Include="Responsavel.cs" />
+    <Compile Include="Sepultamento.cs" />
+    <Compile Include="Sexo.cs" />
+    <Compile Include="Testemunha.cs" />
+    <Compile Include="TipoLogradouro.cs" />
+    <Compile Include="Uf.cs" />
+    <Compile Include="Usuario.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Cartorio.hbm.xml" />
+    <EmbeddedResource Include="Cidadao.hbm.xml" />
+    <EmbeddedResource Include="Cidade.hbm.xml" />
+    <EmbeddedResource Include="Exumacao.hbm.xml" />
+    <EmbeddedResource Include="LogOperacao.hbm.xml" />
+    <EmbeddedResource Include="Perfil.hbm.xml" />
+    <EmbeddedResource Include="Quadra.hbm.xml" />
+    <EmbeddedResource Include="Quadro.hbm.xml" />
+    <EmbeddedResource Include="Raca.hbm.xml" />
+    <EmbeddedResource Include="Sepultamento.hbm.xml" />
+    <EmbeddedResource Include="Sexo.hbm.xml" />
+    <EmbeddedResource Include="TipoLogradouro.hbm.xml" />
+    <EmbeddedResource Include="Uf.hbm.xml" />
+    <EmbeddedResource Include="Usuario.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Documento.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Responsavel.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Testemunha.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Funeraria.hbm.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="CemQuintas.OR" namespace="CemQuintas.OR" default-lazy="false">
+	<class name="CemQuintas.OR.Exumacao,CemQuintas.OR" table="EXUMACAO">
+
+		<id name="IdExumacao" column="ID_EXUMACAO" type="Int64" unsaved-value="0">
+			<generator class="sequence" >
+				<param name="sequence">GEN_EXUMACAO_ID</param>
+			</generator>
+		</id>
+		<many-to-one name="IdSepultamento" column="ID_SEPULTAMENTO" class="Sepultamento" not-null="true"  />
+		<property column="DATA" type="DateTime" name="Data" />
+		<property column="FUNCIONARIO" type="String" name="Funcionario" length="100" />
+		<property column="LIVRO_GERAL_NUMERO" type="String" name="LivroGeralNumero" length="20" />
+		<property column="LIVRO_GERAL_FOLHAS" type="String" name="LivroGeralFolhas" length="20" />
+		<property column="NOME_REQUERENTE" type="String" name="NomeRequerente" length="100" />
+		<property column="NACIONALIDADE" type="String" name="Nacionalidade" length="80" />
+		<property column="NATURALIDADE" type="String" name="Naturalidade" length="80" />
+		<property column="PROFISSAO" type="String" name="Profissao" length="100" />
+		<property column="RG" type="String" name="Rg" length="15" />
+		<many-to-one name="IdUfRg" column="ID_UF_RG" class="Uf" />
+		<property column="DATA_EXPEDICAO_RG" type="DateTime" name="DataExpedicaoRg" />
+		<property column="LOGRADOURO" type="String" name="Logradouro" length="100" />
+		<property column="NUMERO" type="String" name="Numero" length="10" />
+		<property column="APARTAMENTO" type="String" name="Apartamento" length="6" />
+		<property column="BAIRRO" type="String" name="Bairro" length="80" />
+		<many-to-one name="IdCidade" column="ID_CIDADE" class="Cidade" />
+		<property column="TELEFONE" type="String" name="Telefone" length="16" />
+		<property column="GRAU_PARENTESCO" type="String" name="GrauParentesco" length="15" />
+		<property column="RESPONSAVEL_ABERTURA" type="String" name="ResponsavelAbertura" length="100" />
+		<property column="CEMITERIO_DESTINO" type="String" name="CemiterioDestino" length="100" />
+		<property column="DATA_DIGITACAO" type="DateTime" name="DataDigitacao" not-null="true" />
+		
+	</class>
+</hibernate-mapping>

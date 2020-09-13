@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="CemQuintas.OR" namespace="CemQuintas.OR" default-lazy="false">
+	<class name="CemQuintas.OR.Documento,CemQuintas.OR" table="DOCUMENTO">
+
+		<id name="IdDocumento" column="ID_DOCUMENTO" type="Int64" unsaved-value="0">
+			<generator class="sequence" >
+				<param name="sequence">GEN_DOCUMENTO_ID</param>
+			</generator>
+		</id>
+		<property column="DESCRICAO" type="String" name="Descricao" not-null="true" length="10" />
+		
+	</class>
+</hibernate-mapping>

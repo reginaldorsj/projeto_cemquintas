@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="CemQuintas.OR" namespace="CemQuintas.OR" default-lazy="false">
+	<class name="CemQuintas.OR.Responsavel,CemQuintas.OR" table="RESPONSAVEL">
+
+		<id name="IdResponsavel" column="ID_RESPONSAVEL" type="Int64" unsaved-value="0">
+			<generator class="sequence" >
+				<param name="sequence">GEN_RESPONSAVEL_ID</param>
+			</generator>
+		</id>
+		<property column="NOME" type="String" name="Nome" not-null="true" length="60" />
+		<property column="TELEFONE" type="String" name="Telefone" length="25" />
+		<property column="PAI" type="String" name="Pai" length="60" />
+		<property column="MAE" type="String" name="Mae" length="60" />
+		<property column="ENDERECO" type="String" name="Endereco" length="100" />
+		<many-to-one name="IdUf" column="ID_UF" class="Uf" />
+		<property column="RG" type="String" name="Rg" length="15" />
+		<property column="DATA_RG" type="DateTime" name="DataRg" />
+		<many-to-one name="IdCidadeNaturalidade" column="ID_CIDADE_NATURALIDADE" class="Cidade" />
+		
+	</class>
+</hibernate-mapping>

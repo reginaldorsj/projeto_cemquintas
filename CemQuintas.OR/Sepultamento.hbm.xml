@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="CemQuintas.OR" namespace="CemQuintas.OR" default-lazy="false">
+	<class name="CemQuintas.OR.Sepultamento,CemQuintas.OR" table="SEPULTAMENTO">
+
+		<id name="IdSepultamento" column="ID_SEPULTAMENTO" type="Int64" unsaved-value="0">
+			<generator class="sequence" >
+				<param name="sequence">GEN_SEPULTAMENTO_ID</param>
+			</generator>
+		</id>
+		<property column="NUMERO_CONTROLE" type="Int32" name="NumeroControle" not-null="true" />
+		<property column="ANO" type="Int32" name="Ano" not-null="true" />
+		<many-to-one name="IdCidadao" column="ID_CIDADAO" class="Cidadao" not-null="true"  />
+		<many-to-one name="IdDocumento" column="ID_DOCUMENTO" class="Documento" not-null="true"  />
+		<many-to-one name="IdResponsavel1" column="ID_RESPONSAVEL1" class="Responsavel" />
+		<many-to-one name="IdResponsavel2" column="ID_RESPONSAVEL2" class="Responsavel" />
+		<many-to-one name="IdTestemunha1" column="ID_TESTEMUNHA1" class="Testemunha" />
+		<many-to-one name="IdTestemunha2" column="ID_TESTEMUNHA2" class="Testemunha" />
+		<property column="DATA_TERMO" type="DateTime" name="DataTermo" />
+		<property column="DATA_LIMITE" type="DateTime" name="DataLimite" />
+		<property column="DOCUMENTO_OBITO" type="String" name="DocumentoObito" length="20" />
+		<property column="DATA_DOCUMENTO_OBITO" type="DateTime" name="DataDocumentoObito" />
+    <many-to-one name="IdFuneraria" column="ID_FUNERARIA" class="Funeraria" />
+    <many-to-one name="IdCartorio" column="ID_CARTORIO" class="Cartorio" />
+		<property column="LIVRO" type="String" name="Livro" length="50" />
+		<property column="FOLHAS" type="String" name="Folhas" length="6" />
+		<property column="TERMO" type="String" name="Termo" length="10" />
+		<property column="OUTRAS_INFORMACOES" type="String" name="OutrasInformacoes" length="120" />
+		<property column="DATA_GUIA" type="DateTime" name="DataGuia" />
+		<property column="DATA_HORA_FALECIMENTO" type="DateTime" name="DataHoraFalecimento" />
+		<property column="CAUSA_OBITO" type="String" name="CausaObito" length="100" />
+		<property column="CRM" type="String" name="Crm" length="8" />
+		<property column="NOME_MEDICO" type="String" name="NomeMedico" length="100" />
+		<property column="LUGAR_OBITO" type="String" name="LugarObito" length="60" />
+		<property column="COVA_CARNEIRA" type="String" name="CovaCarneira" length="1" />
+		<many-to-one name="IdQuadro" column="ID_QUADRO" class="Quadro" />
+		<property column="COVA" type="String" name="Cova" length="15" />
+		<many-to-one name="IdQuadra" column="ID_QUADRA" class="Quadra" />
+		<property column="CARNEIRA" type="String" name="Carneira" length="15" />
+		<property column="DATA_HORA_SEPULTAMENTO" type="DateTime" name="DataHoraSepultamento" />
+		<property column="NUMERO_IML" type="String" name="NumeroIml" length="10" />
+		<property column="DATA_EXUMACAO" type="DateTime" name="DataExumacao" />
+		<property column="LOCAL_EXUMACAO" type="String" name="LocalExumacao" length="100" />
+		<property column="LOGIN_INCLUSAO" type="String" name="LoginInclusao" length="20" />
+		<property column="DATA_HORA_INCLUSAO" type="DateTime" name="DataHoraInclusao" />
+		<property column="LOGIN_ULTIMA_ALTERACAO" type="String" name="LoginUltimaAlteracao" length="20" />
+		<property column="DATA_HORA_ULTIMA_ALTERACAO" type="DateTime" name="DataHoraUltimaAlteracao" />
+		
+	</class>
+</hibernate-mapping>

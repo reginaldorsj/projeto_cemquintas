@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="CemQuintas.OR" namespace="CemQuintas.OR" default-lazy="false">
+	<class name="CemQuintas.OR.Usuario,CemQuintas.OR" table="USUARIO">
+
+		<id name="IdUsuario" column="ID_USUARIO" type="Int64" unsaved-value="0">
+			<generator class="sequence" >
+				<param name="sequence">GEN_USUARIO_ID</param>
+			</generator>
+		</id>
+		<property column="NOME" type="String" name="Nome" not-null="true" length="100" />
+		<property column="LOGIN" type="String" name="Login" not-null="true" length="20" />
+		<property column="SENHA" type="String" name="Senha" not-null="true" length="20" />
+		<many-to-one name="IdPerfil" column="ID_PERFIL" class="Perfil" not-null="true"  />
+		<property column="DATA_ULTIMO_ACESSO" type="DateTime" name="DataUltimoAcesso" />
+		<property column="DATA_SENHA" type="DateTime" name="DataSenha" not-null="true" />
+		
+	</class>
+</hibernate-mapping>

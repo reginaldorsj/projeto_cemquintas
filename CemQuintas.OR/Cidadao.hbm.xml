@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="CemQuintas.OR" namespace="CemQuintas.OR" default-lazy="false">
+	<class name="CemQuintas.OR.Cidadao,CemQuintas.OR" table="CIDADAO">
+
+		<id name="IdCidadao" column="ID_CIDADAO" type="Int64" unsaved-value="0">
+			<generator class="sequence" >
+				<param name="sequence">GEN_CIDADAO_ID</param>
+			</generator>
+		</id>
+		<property column="NOME" type="String" name="Nome" not-null="true" length="100" />
+		<property column="NOME_IDX" type="String" name="NomeIdx" not-null="true" length="100" />
+		<many-to-one name="IdSexo" column="ID_SEXO" class="Sexo" />
+		<many-to-one name="IdRaca" column="ID_RACA" class="Raca" />
+		<many-to-one name="IdCidadeNaturalidade" column="ID_CIDADE_NATURALIDADE" class="Cidade" />
+		<property column="IDADE" type="Int32" name="Idade" />
+		<property column="COMPLEMENTO_IDADE" type="String" name="ComplementoIdade" length="9" />
+		<property column="NOME_MAE" type="String" name="NomeMae" length="100" />
+		<property column="NOME_PAI" type="String" name="NomePai" length="100" />
+		<property column="RG" type="String" name="Rg" length="15" />
+		<property column="DATA_RG" type="DateTime" name="DataRg" />
+		<many-to-one name="IdUfRg" column="ID_UF_RG" class="Uf" />
+		<property column="ENDERECO" type="String" name="Endereco" length="100" />
+		<property column="TELEFONE" type="String" name="Telefone" length="15" />
+		<property column="OBSERVACOES" type="String" name="Observacoes" length="512" />
+		
+	</class>
+</hibernate-mapping>
