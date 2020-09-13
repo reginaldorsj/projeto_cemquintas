@@ -1,0 +1,88 @@
+<h2>
+  Cadastro de Usuários
+</h2>
+<br />
+<div [hidden]="view=='browse'">
+  <form #formulario="ngForm">
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-9">
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text" maxlength="100" [(ngModel)]="usuario.Nome" #nome="ngModel" pInputText required>
+        <span *ngIf="nome.invalid && nome.dirty" style="font-size:larger; color:red;">Informe o nome do usuário.</span>
+      </div>
+      <div class="p-field p-col-12 p-md-3">
+        <label for="login">Login</label>
+        <input id="login" name="login" type="text" maxlength="20" [(ngModel)]="usuario.Login" #login="ngModel" pInputText required>
+        <span *ngIf="login.invalid && login.dirty" style="font-size:larger; color:red;">Informe o login.</span>
+      </div>
+      <div class="p-field p-col-12 p-md-6">
+        <label for="perfil">Perfil</label>
+        <p-dropdown inputId="perfil" name="perfil" [showClear]="true" [options]="perfis" placeholder="Selecione" [(ngModel)]="usuario.Perfil" #perfil="ngModel" required></p-dropdown>
+        <span *ngIf="perfil.invalid && perfil.dirty" style="font-size:larger; color:red;">Indique o perfil do usuário.</span>
+      </div>
+      <div class="p-field p-col-12 p-md-3">
+        <label for="senha">Senha</label>
+        <input id="senha" name="senha" type="password" maxlength="15" #senha="ngModel" [(ngModel)]="usuario.Senha" pInputText required>
+        <span *ngIf="senha.invalid && senha.dirty" style="font-size:larger; color:red;">Digite a senha.</span>
+      </div>
+      <div class="p-field p-col-12 p-md-3">
+        <label for="confirmaSenha">Confirma Senha</label>
+        <input id="confirmaSenha" name="confirmaSenha" type="password" maxlength="15" [(ngModel)]="confirmaSenha" #confirmPassword="ngModel" pInputText required>
+        <span *ngIf="confirmPassword.invalid && confirmPassword.dirty" style="font-size:larger; color:red;">Repita a senha.</span>
+        <span *ngIf="confirmPassword.value!=undefined && confirmPassword.value!='' && confirmPassword.value!=senha.value" style="font-size:larger; color:red;">Senha não confere.</span>
+      </div>
+    </div>
+    <p style="text-align:center;">
+      <button pButton type="submit" [disabled]="formulario.form.invalid ||
+                                                confirmPassword.value==undefined ||
+                                                confirmPassword.value=='' ||
+                                                confirmPassword.value!=senha.value"
+                                                icon="pi pi-save" class="ui-button-raised ui-button-success" label="Gravar" style="margin-right: .5em" (click)="gravar();"></button>
+      <button pButton type="reset" icon="pi pi-undo" class="ui-button-raised ui-button-danger" label="Desistir" (click)="desistir()"></button>
+    </p>
+  </form>
+</div>
+<div [hidden]="view=='insert'">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td>
+        <button pButton type="button" icon="pi pi-plus" class="ui-button-raised" label="Inserir" (click)="inserir()"></button>
+      </td>
+      <td align="right">
+        <i *ngIf="viewAtualizar" class="pi pi-spin pi-spinner" style="font-size: 1em"></i>&nbsp;
+        <button *ngIf="!viewAtualizar" pButton type="button" icon="pi pi-refresh" class="ui-button-raised" (click)="atualizar()"></button>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <br />
+  <p-table [value]="usuarios">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3em;">ID</th>
+        <th>NOME</th>
+        <th style="width:13em" >LOGIN</th>
+        <th style="width:10em">PERFIL</th>
+        <th style="width:7em">DATA DA SENHA</th>
+        <th style="width:7em">ÚLTIMO ACESSO</th>
+        <th style="width:7em"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-usuario>
+      <tr>
+        <td style="text-align: center;">{{usuario.IdUsuario}}</td>
+        <td>{{usuario.Nome}}</td>
+        <td>{{usuario.Login}}</td>
+        <td>{{usuario.Perfil?.Descricao}}</td>
+        <td>{{usuario.DataSenha | date: 'dd/MM/yyyy'}}</td>
+        <td>{{usuario.DataUltimoAcesso | date: 'dd/MM/yyyy'}}</td>
+        <td>
+          <button pButton type="button" icon="pi pi-pencil" class="ui-button-info" style="margin-right: .5em" (click)="alterar(usuario)"></button>
+          <button pButton type="button" icon="pi pi-minus" class="ui-button-info" (click)="excluir(usuario)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-toast position="top-center" key="tc"></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}" header="Confirmação" icon="pi pi-exclamation-triangle"></p-confirmDialog>

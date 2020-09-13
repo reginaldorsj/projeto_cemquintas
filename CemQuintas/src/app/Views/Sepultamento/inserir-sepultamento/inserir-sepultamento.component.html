@@ -1,0 +1,341 @@
+<h2>Lançamento de Seputamentos</h2>
+
+<app-botoes-sepultamento></app-botoes-sepultamento>
+
+<form #formulario="ngForm" (ngSubmit)="gravar()">
+  <div class="ui-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-md-3">
+      <label for="documento">Documento</label>
+      <p-dropdown inputId="documento" name="documento" [showClear]="true" [options]="documentos" placeholder="Selecione" [(ngModel)]="sepultamento.Documento" #documento="ngModel" required></p-dropdown>
+      <span *ngIf="documento.invalid" style="font-size:larger; color:red;">Selecione o documento.</span>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="documento">Nº Controle</label>
+      <p-inputNumber id="numeroControle" name="numeroControle" #numeroControle="ngModel" maxlength="12" [(ngModel)]="sepultamento.NumeroControle" mode="decimal" [useGrouping]="false" [min]="0" [max]="999999999999" [showButtons]="true">
+      </p-inputNumber>
+      <span *ngIf="numeroControle.invalid" style="font-size:larger; color:red;">0=nenhum</span>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="ano">Ano</label>
+      <p-inputNumber name="ano" id="ano" #ano="ngModel" maxlength="4" [(ngModel)]="sepultamento.Ano" mode="decimal" [useGrouping]="false" [min]="1800" [max]="2050" [showButtons]="true">
+      </p-inputNumber>
+      <span *ngIf="ano.invalid" style="font-size:larger; color:red;">Informe o ano.</span>
+    </div>
+    <div class="p-field p-col-12 p-md-4">
+      <br />
+      <br />
+      <p-checkbox binary="true" id="cidadaoignorado" name="cidadaoignorado" [(ngModel)]="cidadaoIgnorado" label="Cidadão ignorado" (onChange)="changeIgnorado()"></p-checkbox>
+    </div>
+  </div>
+  <hr />
+  <div class="ui-fluid p-formgrid p-grid" *ngIf="cidadaoIgnorado==true">
+    <div class="p-field p-col-12 p-md-2">
+      <label for="numeroIML">Número IML</label>
+      <input id="numeroIML" name="numeroIML" type="text" maxlength="10" [(ngModel)]="sepultamento.NumeroIml" #numeroIml="ngModel" pInputText required>
+      <span *ngIf="numeroIml.invalid" style="font-size:larger; color:red;">Nº no IML.</span>
+    </div>
+  </div>
+  <div class="ui-fluid p-formgrid p-grid" *ngIf="cidadaoIgnorado==false">
+    <div class="p-field p-col-12 p-md-6">
+      <label for="nome">Nome</label>
+      <input id="nome" name="nome" type="text" maxlength="100" [(ngModel)]="sepultamento.Cidadao.Nome" #nome="ngModel" pInputText required>
+      <span *ngIf="nome.invalid" style="font-size:larger; color:red;">Informe o nome do usuário.</span>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="sexo">Sexo</label>
+      <p-dropdown inputId="sexo" name="sexo" [showClear]="true" [options]="sexos" placeholder="Selecione" [(ngModel)]="sepultamento.Cidadao.Sexo" #sexo="ngModel" required></p-dropdown>
+      <span *ngIf="sexo.invalid" style="font-size:larger; color:red;">Selecione o sexo.</span>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="raca">Raça/Cor</label>
+      <p-dropdown inputId="raca" name="raca" [showClear]="true" [options]="racas" placeholder="Selecione" [(ngModel)]="sepultamento.Cidadao.Raca" #raca="ngModel" required></p-dropdown>
+      <span *ngIf="raca.invalid" style="font-size:larger; color:red;">Selecione a raça.</span>
+    </div>
+
+    <div class="p-field p-col-12 p-md-6">
+      <label for="mae">Mãe</label>
+      <input id="mae" name="mae" type="text" maxlength="100" [(ngModel)]="sepultamento.Cidadao.NomeMae" #mae="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="pai">Pai</label>
+      <input id="pai" name="pai" type="text" maxlength="100" [(ngModel)]="sepultamento.Cidadao.NomePai" #pai="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-2">
+      <label for="rg">RG</label>
+      <input id="rg" name="rg" type="text" maxlength="15" [(ngModel)]="sepultamento.Cidadao.Rg" #rg="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="dtRg">Data RG</label>
+      <app-date-picker-mask [stringDate]="stringDateRg" (dataEnviada)="recebeDataRg($event)"></app-date-picker-mask>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="ufRg">UF RG</label>
+      <p-dropdown inputId="ufRg" name="ufRg" [showClear]="true" [options]="ufs" [style]="{'minWidth':'80px'}" placeholder="UF" #ufRg="ngModel" [(ngModel)]="sepultamento.Cidadao.UfRg"></p-dropdown>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="idade">Idade</label>
+      <p-inputNumber id="idade" name="idade" #idade="ngModel" maxlength="3" [(ngModel)]="sepultamento.Cidadao.Idade" mode="decimal" [useGrouping]="false" [min]="0" [max]="140" [showButtons]="true">
+      </p-inputNumber>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="complementoIdade">Complemento Idade</label>
+      <p-dropdown [(ngModel)]="sepultamento.Cidadao.ComplementoIdade" #complementoIdade="ngModel" inputId="complementoIdade" name="complementoIdade" [showClear]="true" [options]="complementosIdade" [style]="{'minWidth':'80px'}" placeholder="Selecione"></p-dropdown>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="telefone">Telefone</label>
+      <input id="telefone" name="telefone" type="text" maxlength="15" [(ngModel)]="sepultamento.Cidadao.Telefone" #telefone="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-4">
+      <label for="uf-cidade">Naturalidade</label><br />
+      <app-uf-cidade [cidade]="cidadaoCidade" (ufEnviada)="recebeCidadaoUf($event)" (nomeCidadeEnviada)="recebeCidadaoNomeCidade($event)"></app-uf-cidade>
+    </div>
+    <div class="p-field p-col-12 p-md-8">
+      <label for="endereco">Endereço</label>
+      <input id="endereco" name="endereco" type="text" maxlength="100" [(ngModel)]="sepultamento.Cidadao.Endereco" #endereco="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-12">
+      <label for="obs">Observações</label>
+      <textarea id="obs" name="obs" #obs="ngModel" [rows]="3" [cols]="30" pInputTextarea [(ngModel)]="sepultamento.Cidadao.Observacoes"></textarea>
+    </div>
+  </div>
+  <hr />
+  <div class="ui-fluid p-formgrid p-grid" *ngIf="sepultamento.Documento?.IdDocumento==2">
+    <div class="p-field p-col-12 p-md-6">
+      <label for="cartorio">Cartório</label>
+      <p-dropdown inputId="cartorio" name="cartorio" [showClear]="true" [options]="cartorios" placeholder="Selecione" [(ngModel)]="sepultamento.Cartorio" #cartorio="ngModel"></p-dropdown>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="livro">Livro</label>
+      <input id="livro" name="livro" type="text" maxlength="50" [(ngModel)]="sepultamento.Livro" #livro="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-2">
+      <label for="folhas">Folhas</label>
+      <input id="folhas" name="folhas" type="text" maxlength="6" [(ngModel)]="sepultamento.Folhas" #folhas="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-5">
+      <label for="termo">Termo</label>
+      <input id="termo" name="termo" type="text" maxlength="10" [(ngModel)]="sepultamento.Termo" #termo="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-5">
+      <label for="outrasInfo">Outras Info.</label>
+      <input id="outrasInfo" name="outrasInfo" type="text" maxlength="120" [(ngModel)]="sepultamento.OutrasInformacoes" #outrasInfo="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-2">
+      <label for="dtGuia">Data Guia</label>
+      <app-date-picker-mask [stringDate]="stringDateGuia" (dataEnviada)="recebeDataGuia($event)"></app-date-picker-mask>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="dhFalecimento">Data/Hora Falecimento</label>
+      <app-date-time-picker-mask [stringDateTime]="stringDateTimeFalecimento" (dataHoraEnviada)="recebeDataHoraFalecimento($event)"></app-date-time-picker-mask>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="crm">CRM</label>
+      <input id="crm" name="crm" type="text" maxlength="8" [(ngModel)]="sepultamento.Crm" #crm="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-5">
+      <label for="medico">Médico</label>
+      <input id="medico" name="medico" type="text" maxlength="100" [(ngModel)]="sepultamento.NomeMedico" #medico="ngModel" pInputText>
+    </div>
+  </div>
+
+  <div class="ui-fluid p-formgrid p-grid" *ngIf="sepultamento.Documento?.IdDocumento==1">
+    <div class="p-field p-col-12 p-md-2">
+      <label for="dtGuia">Data Termo</label>
+      <app-date-picker-mask [stringDate]="stringDateTermo" (dataEnviada)="recebeDataTermo($event)"></app-date-picker-mask>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="dtLimite">Data Limite</label>
+      <app-date-picker-mask [stringDate]="stringDateLimite" (dataEnviada)="recebeDataLimite($event)"></app-date-picker-mask>
+      <span *ngIf="!stringDateLimite" style="font-size:larger; color:red;">Informe data limite.</span>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="documentoObito">Nº Doc. Óbito</label>
+      <input id="documentoObito" name="documentoObito" type="text" maxlength="20" [(ngModel)]="sepultamento.DocumentoObito" #medico="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="dtDocObito">Data Doc. Óbito</label>
+      <app-date-picker-mask [stringDate]="stringDateDocObito" (dataEnviada)="recebeDataDocObito($event)"></app-date-picker-mask>
+      <span *ngIf="!stringDateDocObito" style="font-size:larger; color:red;">Informe data doc. óbito.</span>
+    </div>
+    <div class="p-field p-col-12 p-md-4">
+      <label for="funeraria">Funerária</label>
+      <p-dropdown inputId="funeraria" name="funeraria" [showClear]="true" [options]="funerarias" placeholder="Selecione" [(ngModel)]="sepultamento.Funeraria" #funeraria="ngModel"></p-dropdown>
+    </div>
+
+    <div class="p-field p-col-12 p-md-12">
+      <label><strong>RESPONSÁVEL 1</strong></label>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="nome1">Nome</label>
+      <input id="nome1" name="nome1" type="text" maxlength="100" [(ngModel)]="sepultamento.Responsavel1.Nome" #nome1="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="mae1">Mãe</label>
+      <input id="mae1" name="mae1" type="text" maxlength="100" [(ngModel)]="sepultamento.Responsavel1.Mae" #mae1="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-6">
+      <label for="pai1">Pai</label>
+      <input id="pai1" name="pai1" type="text" maxlength="100" [(ngModel)]="sepultamento.Responsavel1.Pai" #pai1="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="rg1">RG</label>
+      <input id="rg1" name="rg1" type="text" maxlength="15" [(ngModel)]="sepultamento.Responsavel1.Rg" #rg1="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="dtRg1">Data RG</label>
+      <app-date-picker-mask [stringDate]="stringDateRgR1" (dataEnviada)="recebeDataRgR1($event)"></app-date-picker-mask>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="telefone1">Telefone</label>
+      <input id="telefone1" name="telefone1" type="text" maxlength="15" [(ngModel)]="sepultamento.Responsavel1.Telefone" #telefone1="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-6">
+      <label for="endereco1">Endereço</label>
+      <input id="endereco1" name="endereco1" type="text" maxlength="100" [(ngModel)]="sepultamento.Responsavel1.Endereco" #endereco1="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="uf1">UF</label>
+      <p-dropdown inputId="uf1" name="uf1" [showClear]="true" [options]="ufs" [style]="{'minWidth':'80px'}" placeholder="UF" #uf1="ngModel" [(ngModel)]="sepultamento.Responsavel1.Uf"></p-dropdown>
+    </div>
+    <div class="p-field p-col-12 p-md-4">
+      <label for="uf-cidade">Naturalidade</label><br />
+      <app-uf-cidade [cidade]="responsavel1Cidade" (ufEnviada)="recebeResponsavel1Uf($event)" (nomeCidadeEnviada)="recebeResponsavel1NomeCidade($event)"></app-uf-cidade>
+    </div>
+
+    <div class="p-field p-col-12 p-md-12">
+      <label><strong>RESPONSÁVEL 2</strong></label>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="nome2">Nome</label>
+      <input id="nome2" name="nome2" type="text" maxlength="100" [(ngModel)]="sepultamento.Responsavel2.Nome" #nome2="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="mae2">Mãe</label>
+      <input id="mae2" name="mae2" type="text" maxlength="100" [(ngModel)]="sepultamento.Responsavel2.Mae" #mae2="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-6">
+      <label for="pai2">Pai</label>
+      <input id="pai2" name="pai2" type="text" maxlength="100" [(ngModel)]="sepultamento.Responsavel2.Pai" #pai2="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="rg2">RG</label>
+      <input id="rg2" name="rg2" type="text" maxlength="15" [(ngModel)]="sepultamento.Responsavel2.Rg" #rg2="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="dtRg2">Data RG</label>
+      <app-date-picker-mask [stringDate]="stringDateRgR2" (dataEnviada)="recebeDataRgR2($event)"></app-date-picker-mask>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="telefone2">Telefone</label>
+      <input id="telefone2" name="telefone2" type="text" maxlength="15" [(ngModel)]="sepultamento.Responsavel2.Telefone" #telefone2="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-6">
+      <label for="endereco2">Endereço</label>
+      <input id="endereco2" name="endereco2" type="text" maxlength="100" [(ngModel)]="sepultamento.Responsavel2.Endereco" #endereco2="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="uf2">UF</label>
+      <p-dropdown inputId="uf2" name="uf2" [showClear]="true" [options]="ufs" [style]="{'minWidth':'80px'}" placeholder="UF" #uf2="ngModel" [(ngModel)]="sepultamento.Responsavel2.Uf"></p-dropdown>
+    </div>
+    <div class="p-field p-col-12 p-md-4">
+      <label for="uf-cidade">Naturalidade</label><br />
+      <app-uf-cidade [cidade]="responsavel2Cidade" (ufEnviada)="recebeResponsavel2Uf($event)" (nomeCidadeEnviada)="recebeResponsavel2NomeCidade($event)"></app-uf-cidade>
+    </div>
+
+    <div class="p-field p-col-12 p-md-12">
+      <label><strong>TESTEMUNHA 1</strong></label>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="nomet1">Nome</label>
+      <input id="nomet1" name="nomet1" type="text" maxlength="100" [(ngModel)]="sepultamento.Testemunha1.Nome" #nomet1="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="rgt1">RG</label>
+      <input id="rgt1" name="rgt1" type="text" maxlength="15" [(ngModel)]="sepultamento.Testemunha1.Rg" #rgt2="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="telefonet1">Telefone</label>
+      <input id="telefonet1" name="telefonet1" type="text" maxlength="15" [(ngModel)]="sepultamento.Testemunha1.Telefone" #telefonet1="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-12">
+      <label><strong>TESTEMUNHA 2</strong></label>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="nomet2">Nome</label>
+      <input id="nomet2" name="nomet2" type="text" maxlength="100" [(ngModel)]="sepultamento.Testemunha2.Nome" #nomet2="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="rgt2">RG</label>
+      <input id="rgt2" name="rgt2" type="text" maxlength="15" [(ngModel)]="sepultamento.Testemunha2.Rg" #rgt2="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="telefonet2">Telefone</label>
+      <input id="telefonet2" name="telefonet2" type="text" maxlength="15" [(ngModel)]="sepultamento.Testemunha2.Telefone" #telefonet2="ngModel" pInputText>
+    </div>
+  </div>
+  <hr />
+  <div class="ui-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-md-6">
+      <label for="causaObtio">Causa do Óbito</label>
+      <input id="causaObito" name="causaObito" type="text" maxlength="100" [(ngModel)]="sepultamento.CausaObito" #causaObito="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="lugarObito">Lugar de Falecimento</label>
+      <input id="lugarObito" name="lugarObito" type="text" maxlength="60" [(ngModel)]="sepultamento.LugarObito" #lugarObito="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="dhSepultamento">Data/Hora Sepultamento</label>
+      <app-date-time-picker-mask [stringDateTime]="stringDateTimeSepultamento" (dataHoraEnviada)="recebeDataHoraSepultamento($event)"></app-date-time-picker-mask>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="localSepultamento">Local</label>
+      <p-dropdown inputId="localSepultamento" name="localSepultamento" #localSepultamento="ngModel" [showClear]="true" [options]="locaisSepultamento" placeholder="Selecione" [(ngModel)]="sepultamento.CovaCarneira" required></p-dropdown>
+      <span *ngIf="localSepultamento.invalid" style="font-size:larger; color:red;">Selecione o local.</span>
+    </div>
+    <div class="p-field p-col-12 p-md-6" *ngIf="sepultamento.CovaCarneira=='1'">
+      <label for="quadro">Quadro</label>
+      <p-dropdown inputId="quadro" name="quadro" [showClear]="true" [options]="quadros" placeholder="Selecione" [(ngModel)]="sepultamento.Quadro" #quadro="ngModel"></p-dropdown>
+    </div>
+    <div class="p-field p-col-12 p-md-2" *ngIf="sepultamento.CovaCarneira=='1'">
+      <label for="cova">Cova</label>
+      <input id="cova" name="cova" type="text" maxlength="15" [(ngModel)]="sepultamento.Cova" #cova="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6" *ngIf="sepultamento.CovaCarneira=='2'">
+      <label for="quadra">Quadra</label>
+      <p-dropdown inputId="quadra" name="quadra" [showClear]="true" [options]="quadras" placeholder="Selecione" [(ngModel)]="sepultamento.Quadra" #quadra="ngModel"></p-dropdown>
+    </div>
+    <div class="p-field p-col-12 p-md-2" *ngIf="sepultamento.CovaCarneira=='2'">
+      <label for="carneira">Carneira</label>
+      <input id="carneira" name="carneira" type="text" maxlength="15" [(ngModel)]="sepultamento.Carneira" #carneira="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="dtExumacao">Data Exumação</label>
+      <app-date-picker-mask [stringDate]="stringDateExumacao" (dataEnviada)="recebeDataExumacao($event)"></app-date-picker-mask>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="localExumacao">Local Exumação</label>
+      <input id="localExumacao" name="localExumacao" type="text" maxlength="15" [(ngModel)]="sepultamento.LocalExumacao" #locaExumacao="ngModel" pInputText>
+    </div>
+  </div>
+
+  <p style="text-align:center;">
+    <button pButton type="submit" [disabled]="formulario.form.invalid || gravando==true" icon="pi pi-save" class="ui-button-raised ui-button-success" label="Gravar" style="margin-right: .5em"></button>
+    <button pButton type="button" [disabled]="!sepultamento.IdSepultamento" icon="pi pi-minus" class="ui-button-raised ui-button-danger" label="Excluir" style="margin-right: .5em" (click)="excluir()"></button>
+    <button pButton type="button" [disabled]="!sepultamento.IdSepultamento" icon="pi pi-print" (click)="imprimir()" label="Imprimir" class="ui-button-raised" style="margin-right: .5em"></button>
+    <button pButton type="button" [disabled]="!sepultamento.IdSepultamento" icon="pi pi-upload" (click)="exumar()" label="Exumação" class="ui-button-raised" style="margin-right: .5em"></button>
+    <button pButton type="button" icon="pi pi-undo" class="ui-button-raised" label="Reiniciar" (click)="reiniciar()"></button>
+  </p>
+</form>
+
+<p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-toast position="top-center" key="tc"></p-toast>

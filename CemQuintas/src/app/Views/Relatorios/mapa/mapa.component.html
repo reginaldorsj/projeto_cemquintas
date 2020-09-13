@@ -1,0 +1,44 @@
+<h2>
+  Mapa Anual de Sepultamentos&nbsp;&nbsp;<i *ngIf="viewAtualizar" class="pi pi-spin pi-spinner" style="font-size: 1em"></i>
+</h2>
+<br />
+<p-table [value]="mapa">
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 4em;">Ano</th>
+      <th>JAN</th>
+      <th>FEV</th>
+      <th>MAR</th>
+      <th>ABR</th>
+      <th>MAI</th>
+      <th>JUN</th>
+      <th>JUL</th>
+      <th>AGO</th>
+      <th>SET</th>
+      <th>OUT</th>
+      <th>NOV</th>
+      <th>DEZ</th>
+      <th>Total</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-mapa>
+    <tr>
+      <td>{{mapa.Ano}}</td>
+      <td>{{mapa.Jan}}</td>
+      <td>{{mapa.Fev}}</td>
+      <td>{{mapa.Mar}}</td>
+      <td>{{mapa.Abr}}</td>
+      <td>{{mapa.Mai}}</td>
+      <td>{{mapa.Jun}}</td>
+      <td>{{mapa.Jul}}</td>
+      <td>{{mapa.Ago}}</td>
+      <td>{{mapa.Set}}</td>
+      <td>{{mapa.Out}}</td>
+      <td>{{mapa.Nov}}</td>
+      <td>{{mapa.Dez}}</td>
+      <td>{{mapa.Total}}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+

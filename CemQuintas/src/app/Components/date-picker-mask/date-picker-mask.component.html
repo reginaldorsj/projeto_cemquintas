@@ -1,0 +1,4 @@
+<p-inputMask inputId="myDateMask" name="myDateMask" mask="99/99/9999" [(ngModel)]="stringDate" placeholder="99/99/9999" slotChar="dd/mm/aaaa" (onBlur)="blur()" (onInput)="input()" (onComplete)="complete()"></p-inputMask><button pButton type="button" icon="pi pi-calendar" class="p-button-raised button" (click)="mostraCalendar()"></button>
+<div *ngIf="show" style="position: absolute;z-index:1;">
+  <p-calendar id="myDatePicker" name="myDatePicker" dateFormat="dd/mm/yy" [(ngModel)]="date" (onClearClick)="clearClick()" (onSelect)="select()" [inline]="true" [locale]="sepultamentoService.Br" yearRange="1800:2050" [monthNavigator]="true" [yearNavigator]="true" showButtonBar="true"></p-calendar>
+</div>

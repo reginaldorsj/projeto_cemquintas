@@ -1,0 +1,63 @@
+<h2>
+  Cadastro de Quadras
+</h2>
+<br />
+<div [hidden]="view=='browse'">
+  <h2>Inclusão</h2>
+  <form #formulario="ngForm" (ngSubmit)="gravar()">
+    <p>
+      Descrição: <input pInputText type="text" name="descricao" #desc="ngModel" [(ngModel)]="quadra.Descricao" size="50" maxlength="50" required style="margin-right: .5em">
+      <button pButton type="submit" [disabled]="formulario.form.invalid" icon="pi pi-save" class="ui-button-raised ui-button-success" label="Gravar" style="margin-right: .5em"></button>
+      <button pButton type="reset" icon="pi pi-undo" class="ui-button-raised ui-button-danger" label="Desistir" (click)="desistir()"></button>
+      <br />
+      <span *ngIf="desc.invalid && desc.dirty" style="font-size:larger; color:red;">* Campo obrigatório</span>
+    </p>
+  </form>
+</div>
+<div [hidden]="view=='insert'">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td>
+        <button pButton type="button" icon="pi pi-plus" class="ui-button-raised" label="Inserir" (click)="inserir()"></button>
+      </td>
+      <td align="right">
+        <i *ngIf="viewAtualizar" class="pi pi-spin pi-spinner" style="font-size: 1em"></i>&nbsp;
+        <button *ngIf="!viewAtualizar" pButton type="button" icon="pi pi-refresh" class="ui-button-raised" (click)="atualizar()"></button>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <br />
+  <p-table [value]="quadras" [scrollable]="true" scrollHeight="350px" dataKey="IdQuadra" editMode="row">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3em;">ID</th>
+        <th>DESCRIÇÃO</th>
+        <th style="width:8em"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-quadra let-editing="editing" let-ri="rowIndex">
+      <tr [pEditableRow]="quadra">
+        <td style="width: 3em;text-align: center;">{{quadra.IdQuadra}}</td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="quadra.Descricao" size="50" maxlength="50" required>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{quadra.Descricao}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td style="width:8em">
+          <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" (click)="onRowEditInit(quadra)" style="margin-right: .5em"></button>
+          <button *ngIf="!editing" pButton type="button" pDeleteEditableRow icon="pi pi-minus" class="ui-button-info" (click)="onRowEditDelete(quadra)"></button>
+          <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success" style="margin-right: .5em" (click)="onRowEditSave(quadra,ri)"></button>
+          <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger" (click)="onRowEditCancel(quadra, ri)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-toast position="top-center" key="tc"></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}" header="Confirmação" icon="pi pi-exclamation-triangle"></p-confirmDialog>

@@ -1,0 +1,41 @@
+<h2>Produtividade Diária dos Digitadores</h2>
+
+<div class="p-grid ui-fluid">
+  <div class="p-col-12 p-md-2">
+    <h3>Data Inicial</h3>
+    <app-date-picker-mask [stringDate]="stringDateInicial" (dataEnviada)="recebeDataInicial($event)"></app-date-picker-mask>
+  </div>
+  <div class="p-col-12 p-md-2">
+    <h3>Data Final</h3>
+    <app-date-picker-mask [stringDate]="stringDateFinal" (dataEnviada)="recebeDataFinal($event)"></app-date-picker-mask>
+  </div>
+  <div class="p-col-12 p-md-2">
+    <h3>&nbsp;</h3>
+    <button pButton type="button" label="Listar" class="ui-button-raised" (click)="listar()" [disabled]="viewAtualizar"></button>
+  </div>
+  <div class="p-col-12 p-md-1" style="margin-top:4.8em;">
+    <i *ngIf="viewAtualizar" class="pi pi-spin pi-spinner" style="font-size: 1em"></i>
+  </div>
+</div>
+<br />
+<div style="width: 50%">
+  <p-table [value]="produtividade">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Login</th>
+        <th style="width: 8em;">QTD.</th>
+        <th style="width: 5em"><strong>Ver</strong></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-prod>
+      <tr>
+        <td style="text-align:left;">{{prod.Login}}</td>
+        <td style="text-align:right;">{{prod.Quantidade}}</td>
+        <td style="text-align:center;">
+          <button *ngIf="prod.Login" pButton icon="pi pi-search" (click)="ver(prod)" [disabled]="viewAtualizar"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-toast position="top-center" key="tc"></p-toast>

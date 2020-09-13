@@ -1,0 +1,6 @@
+<p-dropdown (onChange)="changeUf()" [options]="ufs" [(ngModel)]="uf" name="uf" [style]="{'minHeight':'33px','minWidth':'85px', 'width':'85px'}" class="mydropdown" placeholder="UF" [showClear]="true"></p-dropdown>
+<input (keyup)="changeNomeCidade()" pInputText type="text" value="" [(ngModel)]="nomeCidade" name="nomeCidade" size="40" maxlength="72" [style]="{'margin-left':'2px', 'minWidth':'189px', 'width':'189px'}">
+<button pButton type="button" icon="pi pi-search" class="ui-button-info" (click)="pesquisar()"></button>
+<div *ngIf="cidades.length!=0;" style="position: absolute;z-index:1;">
+  <p-listbox [options]="cidades" [(ngModel)]="cidade" optionLabel="Descricao" [style]="{'minWidth':'307px'}" [listStyle]="{'max-height':'200px'}" (click)="selecionar()"></p-listbox>
+</div>

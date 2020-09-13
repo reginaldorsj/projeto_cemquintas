@@ -1,0 +1,25 @@
+<h2 style="text-align:center;">Acesso ao Sistema</h2>
+
+<form #form="ngForm">
+  <div style="width:160px; text-align:left; margin: auto;">
+    <br />
+    <span class="ui-float-label">
+      <input type="text" id="usuario" pInputText [(ngModel)]="username" name="usuario" #usuario="ngModel" required size="15" maxlength="15" />
+      <label for="usuario">Usuário</label>
+      <span [hidden]="usuario.valid || usuario.pristine" style="color:red;">*</span>
+    </span>
+    <br />
+    <span class="ui-float-label">
+      <input type="password" pInputText [(ngModel)]="password" id="senha" name="senha" #senha="ngModel" required size="15" maxlength="15" />
+      <label for="senha">Senha</label>
+      <span [hidden]="senha.valid || senha.pristine" style="color:red;">*</span>
+    </span>
+    <p-progressBar [hidden]="!viewProgress" mode="indeterminate" [style]="{'height': '6px', 'width':'151px'}"></p-progressBar>
+    <br />
+    <div style="text-align:center;">
+      <button (click)="entrar()" pButton label="Entrar" class="ui-button-raised" type="submit" [disabled]="form.invalid || viewProgress==true"></button>
+    </div>
+  </div>
+</form>
+
+<p-toast position="top-center" key="tc"></p-toast>

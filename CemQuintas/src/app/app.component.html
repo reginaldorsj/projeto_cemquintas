@@ -1,0 +1,58 @@
+<div id="masthead">
+  <h1 id="siteName">
+    Cemitério Quintas dos Lázaros
+  </h1>
+</div>
+<div id="content">
+  <h2 id="pageName">
+    Sistema de Cadastramento de Sepultamentos
+  </h2>
+  <div class="feature">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<div id="navBar">
+  <div id="sectionLinks">
+    <h3>
+      Lançamentos
+    </h3>
+    <ul>
+      <li><a routerLink="/sepultamento/inserir">Sepultamentos</a></li>
+    </ul>
+    <h3>
+      Relatórios
+    </h3>
+    <ul>
+      <li><a routerLink="/relatorio/listagem-periodo">Sepultamentos (período)</a></li>
+      <li><a routerLink="/relatorio/listagem-faixa">Sepultamentos (faixa)</a></li>
+      <li><a routerLink="/relatorio/produtividade-digitadores">Produtividade</a></li>
+      <li><a routerLink="/relatorio/termos-vencidos">Termos Vencidos</a></li>
+      <li><a routerLink="/relatorio/mapa">Mapa de sepultamentos</a></li>
+    </ul>
+  </div>
+  <div class="relatedLinks">
+    <h3>
+      Cadastros
+    </h3>
+    <ul>
+      <li><a routerLink="/cadastro/cartorio">Cartórios</a></li>
+      <li><a routerLink="/cadastro/funeraria">Funerárias</a></li>
+      <li><a routerLink="/cadastro/quadro">Quadros</a></li>
+      <li><a routerLink="/cadastro/quadra">Quadras</a></li>
+      <li><a routerLink="/cadastro/usuario">Usuários</a></li>
+    </ul>
+    <h3>
+      Opções
+    </h3>
+    <ul>
+      <li><a routerLink="/alterar-senha">Alterar senha</a></li>
+      <li><a routerLink="/login">Sair</a></li>
+    </ul>
+  </div>
+  <div id="advert">
+    &nbsp;
+  </div>
+</div>
+<div id="siteInfo">
+  Copyright © 2006-{{anoAtual}} Secretaria da Saúde do Estado da Bahia. Todos os direitos reservados.
+</div>

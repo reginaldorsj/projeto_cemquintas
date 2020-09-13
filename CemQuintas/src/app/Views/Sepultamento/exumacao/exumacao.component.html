@@ -1,0 +1,107 @@
+<h2>Requerimento de Exumação</h2>
+<br />
+<form #formulario="ngForm" (ngSubmit)="gravar()">
+  <div class="ui-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-md-6">
+      <label for="nome">Nome do Falecido</label>
+      <input id="nome" name="nome" type="text" maxlength="100" [(ngModel)]="exumacao.Sepultamento.Cidadao.Nome" #nome="ngModel" pInputText disabled="disabled" readonly="readonly">
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="func">Funcionário</label>
+      <input id="func" name="func" type="text" maxlength="100" [(ngModel)]="exumacao.Funcionario" #func="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-4">
+      <label for="dtProgramacao">Data da Programação</label>
+      <p-calendar id="dtProgramacao" name="dtProgramacao" dateFormat="dd/mm/yy" [(ngModel)]="exumacao.Data" [locale]="sepultamentoService.Br" [showIcon]="true" yearRange="1800:2050" [monthNavigator]="true" [yearNavigator]="true" showButtonBar="true"></p-calendar>
+    </div>
+    <div class="p-field p-col-12 p-md-4">
+      <label for="livro">Livro Geral Nº</label>
+      <input id="livro" name="livro" type="text" maxlength="20" [(ngModel)]="exumacao.LivroGeralNumero" #livro="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-4">
+      <label for="folhas">Folhas</label>
+      <input id="folhas" name="folhas" type="text" maxlength="20" [(ngModel)]="exumacao.LivroGeralFolhas" #`folhas="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-6">
+      <label for="requerente">Requerente</label>
+      <input id="requerente" name="requerente" type="text" maxlength="100" [(ngModel)]="exumacao.NomeRequerente" #requerente="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="nacionalidade">Nacionalidade</label>
+      <input id="nacionalidade" name="nacionalidade" type="text" maxlength="80" [(ngModel)]="exumacao.Nacionalidade" #nacionalidade="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-6">
+      <label for="naturalidade">Naturalidade</label>
+      <input id="naturalidade" name="naturalidade" type="text" maxlength="80" [(ngModel)]="exumacao.Naturalidade" #naturalidade="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="profissao">Profissao</label>
+      <input id="profissao" name="profissao" type="text" maxlength="100" [(ngModel)]="exumacao.Profissao" #profissao="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-2">
+      <label for="rg">RG</label>
+      <input id="rg" name="rg" type="text" maxlength="15" [(ngModel)]="exumacao.Rg" #rg="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="dtRg">Data RG</label>
+      <p-calendar id="dtRg" name="dtRg" dateFormat="dd/mm/yy" [(ngModel)]="exumacao.DataExpedicaoRg" [locale]="sepultamentoService.Br" [showIcon]="true" yearRange="1800:2050" [monthNavigator]="true" [yearNavigator]="true" showButtonBar="true"></p-calendar>
+    </div>
+    <div class="p-field p-col-12 p-md-2">
+      <label for="ufRg">UF RG</label>
+      <p-dropdown inputId="ufRg" name="ufRg" [showClear]="true" [options]="ufs" [style]="{'minWidth':'80px'}" placeholder="UF" #ufRg="ngModel" [(ngModel)]="exumacao.Uf"></p-dropdown>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="grau-parentesco">Grau Parentesco</label>
+      <input id="grau-parentesco" name="grau-parentesco" type="text" maxlength="15" [(ngModel)]="exumacao.GrauParentesco" #grauParentesco="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="telefone">Telefone</label>
+      <input id="telefone" name="telefone" type="text" maxlength="16" [(ngModel)]="exumacao.Telefone" #telefone="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-8">
+      <label for="logradouro">Logradouro</label>
+      <input id="logradouro" name="logradouro" type="text" maxlength="100" [(ngModel)]="exumacao.Logradouro" #logradouro="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-4">
+      <label for="numero">Nº</label>
+      <input id="numero" name="numero" type="text" maxlength="10" [(ngModel)]="exumacao.Numero" #numero="ngModel" pInputText>
+    </div>
+
+    <div class="p-field p-col-12 p-md-3">
+      <label for="apartamento">Apart.</label>
+      <input id="apartamento" name="apartamento" type="text" maxlength="6" [(ngModel)]="exumacao.Apartamento" #apartamento="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-5">
+      <label for="bairro">Apart.</label>
+      <input id="bairro" name="bairro" type="text" maxlength="80" [(ngModel)]="exumacao.Bairro" #bairro="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-4">
+      <label for="uf-cidade">Cidade</label><br />
+      <app-uf-cidade [cidade]="cidade" (ufEnviada)="recebeUf($event)" (nomeCidadeEnviada)="recebeNomeCidade($event)"></app-uf-cidade>
+    </div>
+
+    <div class="p-field p-col-12 p-md-6">
+      <label for="ossario-destino">Ossário Destino</label>
+      <input id="ossario-destino" name="ossario-destino" type="text" maxlength="100" [(ngModel)]="exumacao.CemiterioDestino" #ossarioDestino="ngModel" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="resp-abertura">Resp. Abertura</label>
+      <input id="resp-abertura" name="resp-abertura" type="text" maxlength="100" [(ngModel)]="exumacao.ResponsavelAbertura" #respAbertura="ngModel" pInputText>
+    </div>
+  </div>
+
+  <p style="text-align:center;">
+    <button pButton type="submit" [disabled]="formulario.form.invalid" icon="pi pi-save" class="ui-button-raised ui-button-success" label="Gravar" style="margin-right: .5em"></button>
+    <button pButton type="button" [disabled]="!exumacao.IdExumacao" icon="pi pi-minus" class="ui-button-raised ui-button-danger" label="Excluir" style="margin-right: .5em" (click)="excluir()"></button>
+    <button pButton type="button" [disabled]="!exumacao.IdExumacao" icon="pi pi-print" (click)="imprimir()" label="Imprimir" class="ui-button-raised" style="margin-right: .5em"></button>
+    <button pButton type="button" icon="pi pi-undo" class="ui-button-raised" label="Voltar" (click)="voltar()"></button>
+  </p>
+</form>
+
+<p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-toast position="top-center" key="tc"></p-toast>

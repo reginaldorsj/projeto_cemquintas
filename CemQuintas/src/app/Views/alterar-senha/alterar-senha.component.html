@@ -1,0 +1,41 @@
+<h2>Alterar Senha</h2>
+
+<form #form="ngForm">
+  <div style="width:160px; text-align:left; margin: auto;">
+    <br />
+    <span class="ui-float-label">
+      <input type="text" id="usuario" pInputText [(ngModel)]="username" name="usuario" #usuario="ngModel" required size="15" maxlength="15" />
+      <label for="usuario">Usuário</label>
+      <span *ngIf="usuario.invalid && usuario.dirty" style="font-size:larger; color:red;">Informe o usuário.</span>
+    </span>
+    <br />
+    <span class="ui-float-label">
+      <input type="password" pInputText [(ngModel)]="password" id="senha" name="senha" #senha="ngModel" required size="15" maxlength="15" />
+      <label for="senha">Senha</label>
+    </span>
+    <br />
+    <span class="ui-float-label">
+      <input type="password" pInputText [(ngModel)]="newPassword" id="novaSenha" name="novaSenha" #novaSenha="ngModel" required size="15" maxlength="15" />
+      <label for="novaSenha">Senha Nova</label>
+    </span>
+    <br />
+    <span class="ui-float-label">
+      <input type="password" pInputText [(ngModel)]="confirmNewPassword" id="confirmaNewSenha" name="confirmNewSenha" #confirmaNovaSenha="ngModel" required size="15" maxlength="15" />
+      <label for="confirmaNovaSenha">Confirma Nova Senha</label>
+      <span *ngIf="confirmaNovaSenha.invalid && confirmaNovaSenha.dirty" style="font-size:larger; color:red;">Repita a nova senha.</span>
+      <span *ngIf="confirmaNovaSenha.value!=undefined && confirmaNovaSenha.value!='' && confirmaNovaSenha.value!=novaSenha.value" style="font-size:larger; color:red;">Nova senha não confere.</span>
+    </span>
+    <p-progressBar [hidden]="!viewProgress" mode="indeterminate" [style]="{'height': '6px', 'width':'151px'}"></p-progressBar>
+    <br />
+    <div style="text-align:center;">
+      <button [disabled]="form.invalid ||
+                          confirmaNovaSenha.value==undefined ||
+                          confirmaNovaSenha.value=='' ||
+                          confirmaNovaSenha.value!=novaSenha.value ||
+                          viewProgress==true"
+              (click)="gravar()" pButton label="Gravar" class="ui-button-raised" type="submit"></button>
+    </div>
+  </div>
+</form>
+
+<p-toast position="top-center" key="tc"></p-toast>

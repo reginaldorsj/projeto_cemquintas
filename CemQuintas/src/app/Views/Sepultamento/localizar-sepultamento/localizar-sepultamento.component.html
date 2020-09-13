@@ -1,0 +1,52 @@
+<h2>Localizar Seputamento</h2>
+
+<app-botoes-sepultamento></app-botoes-sepultamento>
+
+<div class="p-grid ui-fluid">
+  <div class="p-col-12 p-md-3">
+    <label for="pesquisar-por">Pesquisar por</label>
+    <p-dropdown inputId="pesquisar-por" name="pesquisar-por" [showClear]="true" [options]="opcoes" placeholder="Selecione" [(ngModel)]="pesquisarPor"></p-dropdown>
+  </div>
+  <div class="p-col-12 p-md-5">
+    <label for="dado">Dado da pesquisa</label>
+    <input id="dado" name="dado" type="text" maxlength="100" [(ngModel)]="dado" pInputText>
+  </div>
+  <div class="p-col-12 p-md-2">
+    <label for="pesquisar-btn">&nbsp;</label>
+    <button [disabled]="pesquisando" id="pesquisar-btn" type="button" icon="pi pi-search" pButton label="pesquisar" (click)="pesquisar()"></button>
+  </div>
+  <div class="p-col-12 p-md-1" style="margin-top:2em">
+    <i *ngIf="pesquisando" class="pi pi-spin pi-spinner" style="font-size: 1em"></i>
+  </div>
+</div>
+
+
+<div infiniteScroll (scrolled)="onScroll()">
+  <p-table [value]="sepultamentos">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>NOME</th>
+        <th style="width:7.5em">Nº CONTROLE</th>
+        <th style="width:4em">ANO</th>
+        <th>NATURALIDADE</th>
+        <th style="width:3em">UF</th>
+        <th>CAUSA DA MORTE</th>
+        <th style="width:4em"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pesquisa>
+      <tr>
+        <td>{{pesquisa.Nome}}</td>
+        <td>{{pesquisa.NumeroControle}}</td>
+        <td>{{pesquisa.Ano}}</td>
+        <td>{{pesquisa.Cidade}}</td>
+        <td>{{pesquisa.Uf}}</td>
+        <td>{{pesquisa.CausaObito}}</td>
+        <td>
+          <button pButton type="button" icon="pi pi-pencil" class="ui-button-info" style="margin-right: .5em" (click)="alterar(pesquisa)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-toast position="top-center" key="tc"></p-toast>

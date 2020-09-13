@@ -1,0 +1,95 @@
+<h2>
+  Cadastro de Cartórios
+</h2>
+<br />
+<div [hidden]="view=='browse'">
+  <form #formulario="ngForm" (ngSubmit)="gravar()">
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text" maxlength="100" [(ngModel)]="cartorio.Nome" #nome="ngModel" pInputText required>
+        <span *ngIf="nome.invalid && nome.dirty" style="font-size:larger; color:red;">Informe o nome do cartório.</span>
+      </div>
+      <div class="p-field p-col-12 p-md-6">
+        <label for="distrito">Distrito</label>
+        <input id="distrito" name="distrito" type="text" maxlength="35" [(ngModel)]="cartorio.Distrito" #distrito="ngModel" pInputText required>
+        <span *ngIf="distrito.invalid && distrito.dirty" style="font-size:larger; color:red;">Informe o distrito.</span>
+      </div>
+      <div class="p-field p-col-12 p-md-3">
+        <label for="perfil">Tipo Logradouro</label>
+        <p-dropdown inputId="tipoLogradouro" name="tipoLogradouro" [showClear]="true" [options]="tiposLogradouros" placeholder="Selecione" [(ngModel)]="cartorio.TipoLogradouro" #tipoLogradouro="ngModel" required></p-dropdown>
+        <span *ngIf="tipoLogradouro.invalid && tipoLogradouro.dirty" style="font-size:larger; color:red;">Indique o tipo de logradouro.</span>
+      </div>
+      <div class="p-field p-col-12 p-md-9">
+        <label for="logradouro">Logradouro</label>
+        <input id="logradouro" name="logradouro" type="text" maxlength="75" #logradouro="ngModel" [(ngModel)]="cartorio.Logradouro" pInputText required>
+        <span *ngIf="logradouro.invalid && logradouro.dirty" style="font-size:larger; color:red;">Digite o logradouro.</span>
+      </div>
+      <div class="p-field p-col-12 p-md-3">
+        <label for="numero">Nº</label>
+        <input id="numero" name="numero" type="text" maxlength="15" [(ngModel)]="cartorio.Numero" #numero="ngModel" pInputText required>
+        <span *ngIf="numero.invalid && numero.dirty" style="font-size:larger; color:red;">Informe o número.</span>
+      </div>
+      <div class="p-field p-col-12 p-md-6">
+        <label for="bairro">Bairro</label>
+        <input id="bairro" name="bairro" type="text" maxlength="50" [(ngModel)]="cartorio.Bairro" #bairro="ngModel" pInputText required>
+        <span *ngIf="bairro.invalid && bairro.dirty" style="font-size:larger; color:red;">Informe o bairro.</span>
+      </div>
+      <div class="p-field p-col-12 p-md-3">
+        <label for="cep">CEP</label>
+        <input id="cep" name="cep" type="text" maxlength="8" [(ngModel)]="cartorio.Cep" #cep="ngModel" pInputText required>
+        <span *ngIf="cep.invalid && cep.dirty" style="font-size:larger; color:red;">Informe o CEP com 8 digitos.</span>
+        <span *ngIf="cep.value!='' && cep.value!=null && cep.value.length!=8" style="font-size:larger; color:red;">CEP inválido.</span>
+      </div>
+      <div class="p-field p-col-12 p-md-8">
+        <label>Cidade</label><br />
+        <app-uf-cidade [cidade]="cidade" (ufEnviada)="recebeUf($event)" (nomeCidadeEnviada)="recebeNomeCidade($event)" ></app-uf-cidade>
+      </div>
+    </div>
+    <p style="text-align:center;">
+      <button pButton type="submit" [disabled]="formulario.form.invalid ||
+                                                cep.value==null ||
+                                                cep.value==undefined || 
+                                                cep.value.length!=8" icon="pi pi-save" class="ui-button-raised ui-button-success" label="Gravar" style="margin-right: .5em"></button>
+      <button pButton type="reset" icon="pi pi-undo" class="ui-button-raised ui-button-danger" label="Desistir" (click)="desistir()"></button>
+    </p>
+  </form>
+</div>
+<div [hidden]="view=='insert'">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td>
+        <button pButton type="button" icon="pi pi-plus" class="ui-button-raised" label="Inserir" (click)="inserir()"></button>
+      </td>
+      <td align="right">
+        <i *ngIf="viewAtualizar" class="pi pi-spin pi-spinner" style="font-size: 1em"></i>&nbsp;
+        <button *ngIf="!viewAtualizar" pButton type="button" icon="pi pi-refresh" class="ui-button-raised" (click)="atualizar()"></button>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <br />
+  <p-table [value]="cartorios" [scrollable]="true" scrollHeight="350px">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3em;">ID</th>
+        <th>NOME</th>
+        <th>DISTRITO</th>
+        <th style="width:7em"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cartorio>
+      <tr>
+        <td style="width: 3em;text-align: center;">{{cartorio.IdCartorio}}</td>
+        <td>{{cartorio.Nome}}</td>
+        <td>{{cartorio.Distrito}}</td>
+        <td style="width:7em">
+          <button pButton type="button" icon="pi pi-pencil" class="ui-button-info" style="margin-right: .5em" (click)="alterar(cartorio)"></button>
+          <button pButton type="button" icon="pi pi-minus" class="ui-button-info" (click)="excluir(cartorio)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-toast position="top-center" key="tc"></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}" header="Confirmação" icon="pi pi-exclamation-triangle"></p-confirmDialog>

@@ -1,0 +1,152 @@
+<button pButton (click)="printDiv()" type="button" label="Imprimir" icon="pi pi-print" class="ui-button-raised ui-button-rounded"></button>
+&nbsp;&nbsp;
+<button pButton (click)="voltar()" type="button" label="Voltar" icon="pi pi-undo" class="ui-button-raised ui-button-rounded"></button>
+
+<div id="divExumacao">
+  <table width="100%">
+    <tr>
+      <td>
+        <img src="/cemquintas/assets/images/governo_bahia.jpg" title="Governo da Bahia" alt="Governo da Bahia" style="height: 50px; width: 52px" />
+      </td>
+      <td>
+        Governo do Estado da Bahia<br />
+        Secretaria da Saúde do Estado da Bahia
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <hr />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        DIRETORIA ADMINISTRAGIVA - DAM<br />
+        COORDENAÇÃO DE SERVIÇOS GERAIS - CSG<br />
+        COORDENAÇÃO DO CEMITÉRIO PÚBLICO DE QUINTAS DOS LÁZAROS - CELAZ
+      </td>
+    </tr>
+  </table>
+  <p style="text-align: center">
+    <strong>
+      <span class="auto-style1">EXUMAÇÃO REQUERIDA EM </span>
+      {{exumacao?.Sepultamento?.CovaCarneira=='1'?'COVA DE CHÃO': 'CARNEIRA'}}
+    </strong>
+    <br />
+    <br />
+    Programação para
+    {{ (exumacao?.Data) ? (exumacao?.Data | date: 'dd/MM/yyyy') : ('____/____/____') }}
+    <br />
+    <strong><span class="auto-style2">Horário: das 08:00 às 11:00</span></strong>
+  </p>
+  <table>
+    <tr>
+      <td align="left">
+        Funcionário:
+        {{(exumacao?.Funcionario) ? (exumacao?.Funcionario) : ('________________________________________________________')}}
+      </td>
+    </tr>
+    <tr>
+      <td align="left">
+        Livro Geral nº
+        {{(exumacao?.LivroGeralNumero) ? (exumacao?.LivroGeralNumero) : ('________')}}
+        &nbsp;Fls:
+        {{(exumacao?.LivroGeralFolhas) ? (exumacao?.LivroGeralFolhas) : ('________')}}
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    Ao<br />
+    Cemitério Público de Quintas dos Lázaros<br />
+    Baixa de Quintas<br />
+    Salvador-BA
+  </p>
+  <p style="text-align: center">
+    {{exumacao?.Sepultamento?.Cidadao?.Nome}}
+    <br />
+    <span class="auto-style2">(nome compelto da pessoa falecida)</span>
+  </p>
+  <p style="text-align: justify; font-size: x-small;">
+    Senhor Coordenador,<br />
+    <br />
+    <strong>{{(exumacao?.NomeRequerente) ? (exumacao?.NomeRequerente) : ('________________________________________________________________')}}</strong>
+    ,
+    <strong>{{(exumacao?.Nacionalidade) ? (exumacao?.Nacionalidade) : ('___________________________________________________________________')}}</strong>
+    ,
+    natural de
+    <strong>
+      {{(exumacao?.Cidade?.Descricao) ? (exumacao?.Cidade?.Descricao) : ('_____________________________________________________________________')}}
+      &nbsp;{{exumacao?.Cidade?.Uf?.Sigla}}
+    </strong>
+    ,
+    <strong>{{(exumacao?.Profissao) ? (exumacao?.Profissao) : ('_____________________________________________________________________')}}</strong>
+    , portador da identidade nº
+    <strong>{{(exumacao?.Rg) ? (exumacao?.Rg) : ('__________________________________________________')}}</strong>
+    , expedida em
+    <strong>{{(exumacao?.DataExpedicaoRg) ? (exumacao?.DataExpedicaoRg | date: 'dd/MM/yyyy') : ('____/_______/_____')}}</strong>
+    , SSP-<strong>{{(exumacao?.Uf.Sigla) ? (exumacao?.Uf?.Sigla) : ('________')}}</strong>
+    , residente a
+          <strong>{{(exumacao?.Logradouro) ? (exumacao?.Logradouro) : ('__________________________________________________________________________')}}</strong>
+    , nº
+          <strong>{{(exumacao?.Numero) ? (exumacao?.Numero) : ('__________________')}}</strong>
+    &nbsp;aptº
+          <strong>{{(exumacao?.Apartamento) ? (exumacao?.Apartamento) : ('_______________')}}</strong>
+    &nbsp;bairro:
+          <strong>{{(exumacao?.Bairro) ? (exumacao?.Bairro) : ('_______________________________________________________')}}</strong>
+    , cidade
+          <strong>{{(exumacao?.Cidade?.Descricao) ? (exumacao?.Cidade?.Descricao) : ('_____________________________________________')}}</strong>
+    , Estado
+          <strong>{{(exumacao?.Cidade?.Uf.Sigla) ? (exumacao?.Cidade?.Uf.Sigla) : ('_____________')}}</strong>
+    &nbsp;Telefone
+          <strong>{{(exumacao?.Telefone) ? (exumacao?.Telefone) : ('___________________________')}}</strong>
+    &nbsp;vem requerer a V. Sº, como representante da família
+          <strong>{{(exumacao?.GrauParentesco) ? (exumacao?.GrauParentesco) : ('______________________________')}}</strong>
+    &nbsp;os restos mortais de
+          <strong>{{(exumacao?.Sepultamento?.Cidadao?.Nome) ? (exumacao?.Sepultamento?.Cidadao?.Nome) : ('________________________________________________________')}}</strong>
+    , falecido em
+          <strong>{{(exumacao?.Sepultamento?.DataHoraFalecimento) ? (exumacao?.Sepultamento?.DataHoraFalecimento | date : 'dd/MM/yyyy') : ('_____/_______/________')}}</strong>
+    , conforme guia datada de
+          <strong>{{(exumacao?.Sepultamento?.DataGuia) ? (exumacao?.Sepultamento?.DataGuia | date: 'dd/MM/yyyy') : ('_____/_____/______')}}</strong>
+    , expedida pelo Cartório de
+          <strong>{{(exumacao?.Sepultamento?.Cartorio?.Nome) ? (exumacao?.Sepultamento?.Cartorio?.Nome) : ('_____________________________________________')}}</strong>
+    , livro:
+          <strong>{{(exumacao?.Sepultamento?.Livro) ? (exumacao?.Sepultamento?.Livro) : ('_______________________________________________')}}</strong>
+    , fls
+          <strong>{{(exumacao?.Sepultamento?.Folhas) ? (exumacao?.Sepultamento?.Folhas) : ('___________________')}}</strong>
+    , termo nº
+          <strong>{{(exumacao?.Sepultamento?.Termo) ? (exumacao?.Sepultamento?.Termo) : ('___________________________')}}</strong>
+    &nbsp;e sepultado em
+          <strong>{{(exumacao?.Sepultamento?.DataHoraSepultamento) ? (exumacao?.Sepultamento.DataHoraSepultamento | date:'dd/MM/yyyy') : ('______/_______/_______')}}</strong>
+    , sob nº de ordem geral
+    <strong>{{exumacao?.Sepultamento?.NumeroControle}}/{{exumacao?.Sepultamento?.Ano}}</strong>
+    , nesse Cemitério Público de Quintas dos Lázaros,
+    <strong>{{(exumacao?.Sepultamento?.CovaCarneira=='1') ? 'quadro' : 'quadra'}}</strong>
+    &nbsp;<strong>{{(exumacao?.Sepultamento?.CovaCarneira=='1') ? (exumacao?.Sepultamento?.Quadro?.Descricao) : ((exumacao?.Sepultamento?.Quadra?.Descricao))}}</strong>
+    ,
+          <strong>{{(exumacao?.Sepultamento?.CovaCarneira=='1') ? 'cova' : 'carneira'}}</strong>
+    &nbsp;nº
+          <strong>{{(exumacao?.Sepultamento?.CovaCarneira=='1') ? (exumacao?.Sepultamento?.Cova) : (exumacao?.Sepultamento?.Carneira)}}</strong>
+    &nbsp;para serem transferidos para o Ossuário
+          <strong>{{(exumacao?.CemiterioDestino) ? (exumacao?.CemiterioDestino) : ('___________________________________________')}}</strong>
+    .
+  </p>
+  <p style="text-align: justify">
+    <span class="auto-style2">O não comparecimento no dia e hora marcados implicará em total desistência do(a) requerente, devendo a Secretaria da Saúde do Estado da Bahia, através da Coordenação do Cemitário, determinar a exumação (abertura da cova) em caráter de coletividade.</span><br class="auto-style2" />
+    <span class="auto-style2">E no caso de constatação de mimificação do corpo, deverá ocorrer a permanência do mesmo local (cova de chão) pelo período necessário de 01 (um) até 02 (dois) anos, neste caso de um quadro de sepultamentos normais em covas de chão. Entretanto no caso de quadro de chão mumificado o prazo é de 01 (um) ano.</span><br class="auto-style2" />
+    <span class="auto-style2">Este requerimento só passará a ter validade jurídica depois de apresentação do destino dos restos mortais expedida pelo sepulcrário de destino comprovando a existência de ossuário para o mesmo objetivo desta solicitação requerida.</span><br class="auto-style2" />
+    <span class="auto-style2">Caso contrário sua invalidade é plena.</span>
+  </p>
+  <p style="text-align: right">
+    Salvador,
+    {{exumacao?.DataDigitacao | date:'dd/MM/yyyy'}}
+  </p>
+  <p style="text-align: right">&nbsp;</p>
+  <p style="text-align: right">
+    _____________________________________________________________<br />
+    (assinatura do requerente)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </p>
+  <p style="text-align: left">
+    Responsável pela abertura:
+    <strong>{{(exumacao?.ResponsavelAbertura) ? (exumacao?.ResponsavelAbertura) : ('_________________________________________________________________________')}}</strong>
+  </p>
+</div>

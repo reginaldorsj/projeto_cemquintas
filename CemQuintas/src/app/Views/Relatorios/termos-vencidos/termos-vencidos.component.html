@@ -1,0 +1,44 @@
+<h2>Termos de Compromisso Vencidos</h2>
+
+<div class="p-grid ui-fluid">
+  <div class="p-col-12 p-md-2">
+    <h3>Data Inicial</h3>
+    <app-date-picker-mask [stringDate]="stringDateInicial" (dataEnviada)="recebeDataInicial($event)"></app-date-picker-mask>
+  </div>
+  <div class="p-col-12 p-md-2">
+    <h3>Data Final</h3>
+    <app-date-picker-mask [stringDate]="stringDateFinal" (dataEnviada)="recebeDataFinal($event)"></app-date-picker-mask>
+  </div>
+  <div class="p-col-12 p-md-2">
+    <h3>&nbsp;</h3>
+    <button pButton type="button" label="Listar" class="ui-button-raised" (click)="listar();"></button>
+  </div>
+  <div class="p-col-12 p-md-1" style="margin-top:4.8em;">
+    <i *ngIf="viewAtualizar" class="pi pi-spin pi-spinner" style="font-size: 1em"></i>
+  </div>
+</div>
+<br />
+<p-table [value]="sepultamentos">
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 8em;">Nº</th>
+      <th>NOME</th>
+      <th style="width: 10em;">DATA TERMO</th>
+      <th style="width: 10em;">DATA LIMITE</th>
+      <th style="width:5em"><strong>Ver</strong></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-sep>
+    <tr>
+      <td>{{sep.NumeroControle}}/{{getTwo(sep.Ano)}}</td>
+      <td style="text-align:left;">{{sep.Cidadao.Nome}}</td>
+      <td>{{sep.DataTermo | date:'dd/MM/yyyy'}}</td>
+      <td>{{sep.DataLimite | date: 'dd/MM/yyyy'}}</td>
+      <td style="text-align:center;">
+        <button pButton icon="pi pi-search" (click)="select(sep)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-toast position="top-center" key="tc"></p-toast>

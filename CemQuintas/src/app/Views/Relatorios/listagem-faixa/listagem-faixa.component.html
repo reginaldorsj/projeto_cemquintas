@@ -1,0 +1,28 @@
+<h2>Relatório de Sepultamentos (por faixa de nº de controle)</h2>
+
+<div class="p-grid ui-fluid">
+  <div class="p-col-12 p-md-2">
+    <h3>Ano</h3>
+    <p-inputNumber maxlength="4" [(ngModel)]="ano" mode="decimal" [useGrouping]="false" [min]="1800" [max]="2050" [showButtons]="true">
+    </p-inputNumber>
+  </div>
+  <div class="p-col-12 p-md-2">
+    <h3>Nº Controle Inicial</h3>
+    <p-inputNumber maxlength="12" [(ngModel)]="numeroInicial" mode="decimal" [useGrouping]="false" [min]="1" [max]="999999999999" [showButtons]="true">
+    </p-inputNumber>
+  </div>
+  <div class="p-col-12 p-md-2">
+    <h3>Nº Controle Final</h3>
+    <p-inputNumber maxlength="12" [(ngModel)]="numeroFinal" mode="decimal" [useGrouping]="false" [min]="1" [max]="9999999999999" [showButtons]="true">
+    </p-inputNumber>
+  </div>
+  <div class="p-col-12 p-md-2">
+    <h3>&nbsp;</h3>
+    <button pButton type="button" label="Listar" class="ui-button-raised" (click)="listar()" [disabled]="viewAtualizar"></button>
+  </div>
+  <div class="p-col-12 p-md-1" style="margin-top:4.8em;">
+    <i *ngIf="viewAtualizar" class="pi pi-spin pi-spinner" style="font-size: 1em"></i>
+  </div>
+</div>
+
+<p-toast position="top-center" key="tc"></p-toast>

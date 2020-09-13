@@ -1,0 +1,292 @@
+<button pButton (click)="printDiv()" type="button" label="Imprimir" icon="pi pi-print" class="ui-button-raised ui-button-rounded"></button>
+&nbsp;&nbsp;
+<button pButton (click)="voltar()" type="button" label="Voltar" icon="pi pi-undo" class="ui-button-raised ui-button-rounded"></button>
+
+<div id="divTermo">
+  <table>
+    <tr>
+      <td>
+        <img src="/cemquintas/assets/images/governo_bahia.jpg" alt="Governo da Bahia" style="height: 45px; width: 35px"
+             class="style2" /><span class="style2"> </span>
+      </td>
+      <td>
+        <strong>
+          <span class="style4">G</span><span class="style2">OVERNO DO </span><span class="style4">E</span><span class="style2">STADO DA </span><span class="style4">B</span><span class="style2">AHIA</span><br class="style2" />
+          <span class="style2">Secretaria da Saúde do Estado da Bahia </span>
+        </strong>
+      </td>
+    </tr>
+  </table>
+  <hr />
+  <span class="style3">
+    DIRETORIA ADMINISTRATIVA - DAM
+    <br />
+    COORDENAÇÃO DE SERVIÇOS GERAIS - CSG
+    <br />
+    COORDENAÇÃO DO CEMITÉRIO PÚBLICO DE QUINTA DOS LÁZAROS - CELAZ
+  </span>
+  <br />
+  <br />
+  <table width="100%">
+    <tr>
+      <td>
+        <span class="style3">
+          <strong>
+            TERMO DE COMPROMISSO/REGISTRO DE ÓBITO<br />
+            LEI Nº6.015, DE 31/12/1973 - CAPÍTULO IX DO ÓBITO:
+          </strong>
+        </span>
+      </td>
+      <td style="text-align: right" valign="top">
+        <span class="style3">
+          PRAZO CONCEDIDO: {{sepultamento?.DataLimite | date:'dd/MM/yyyy'}}
+        </span>
+      </td>
+    </tr>
+  </table>
+  <span class="style3">
+    <strong>Art. 78</strong> - "Nenhum
+    enterramento será feito sem certidão oficial de registro do lugar do falecimento,
+    extraída após a lavratura do assento de óbito, em vista do atestado médico, se houver
+    no lugar, ou, caso contrário, de duas lavratura do assento de óbito, em vista do
+    atestado médico, se houver no lugar, ou, caso contrário, se duas pessoas qualificadas,
+    que tiverem presenciado ou verificado a morte".
+  </span>
+  <br />
+  <span class="style3">
+    <strong>Art. 79</strong> - "Na
+    impossibilidade de ser feito o registro dentro de 24 (vinte e quatro) horas do falecimento,
+    pela distância ou qualquer outro motivo relevante, o assento será lavrado depois,
+    com a maior urgência e dentro dos prazos fixados no 51".
+  </span>
+  <br />
+  <br />
+  <span class="style3">SEPULTAMENTOS</span>
+  <br />
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>Nome do(a) falecido(a):</strong> {{sepultamento?.Cidadao?.Nome}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Nat.:</strong> {{sepultamento?.Cidadao?.Cidade?.Descricao}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>UF:</strong> {{sepultamento?.Cidadao?.Cidade?.Uf.Sigla}}</span>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>Pai: </strong> {{sepultamento?.Cidadao?.NomePai}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Mãe: </strong> {{sepultamento?.Cidadao?.NomeMae}}</span>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>Nº RG:</strong> {{sepultamento?.Cidadao?.Rg}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Data de Exp:</strong> {{sepultamento?.Cidadao?.DataRg | date:'dd/MM/yy'}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>UF:</strong> {{sepultamento?.Cidadao?.UfRg?.Sigla}}</span>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>End.:</strong> {{sepultamento?.Cidadao?.Endereco}}</span>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>Tel.:</strong> {{sepultamento?.Cidadao?.Telefone}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Local do Falecimento:</strong> {{sepultamento?.LugarObito}}</span>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>Nº Doc. Óbito: </strong> {{sepultamento?.DocumentoObito}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Data:</strong> {{sepultamento?.DataDocumentoObito | date:'dd/MM/yy'}}</span>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>Causa Mortis:</strong> {{sepultamento?.CausaObito}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Funerária:</strong> {{sepultamento?.Funeraria?.Nome}}</span>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <span class="style3">ENVOLVIMENTO</span>
+  <br />
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>Nome do 1º:</strong> {{sepultamento?.Responsavel1?.Nome}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Nat.:</strong> {{sepultamento?.Responsavel1?.Cidade?.Descricao}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>UF:</strong> {{sepultamento?.Responsavel1?.Cidade?.Uf.Sigla}}</span>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>Pai: </strong> {{sepultamento?.Responsavel1?.Pai}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Mãe: </strong> {{sepultamento?.Responsavel1?.Mae}}</span>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>End.:</strong> {{sepultamento?.Responsavel1?.Endereco}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Tel.:</strong> {{sepultamento?.Responsavel1?.Telefone}}</span>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>Nº RG:</strong> {{sepultamento?.Responsavel1?.Rg}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Data de Exp:</strong> {{sepultamento?.Responsavel1?.DataRg | date:'dd/MM/yy'}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>UF:</strong> {{sepultamento?.Responsavel1?.Uf?.Sigla}}</span>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>Nome do 2º:</strong> {{sepultamento?.Responsavel2?.Nome}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Nat.:</strong> {{sepultamento?.Responsavel2?.Cidade?.Descricao}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>UF:</strong> {{sepultamento?.Responsavel2?.Cidade?.Uf.Sigla}}</span>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>Pai: </strong> {{sepultamento?.Responsavel2?.Pai}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Mãe: </strong> {{sepultamento?.Responsavel2?.Mae}}</span>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>End.:</strong> {{sepultamento?.Responsavel2?.Endereco}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Tel.:</strong> {{sepultamento?.Responsavel2?.Telefone}}</span>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" cellspacing="0" cellpadding="2" rules="all" border="1">
+    <tr>
+      <td>
+        <span class="style3"><strong>Nº RG:</strong> {{sepultamento?.Responsavel2?.Rg}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>Data de Exp:</strong> {{sepultamento?.Responsavel2?.DataRg | date:'dd/MM/yy'}}</span>
+      </td>
+      <td>
+        <span class="style3"><strong>UF:</strong> {{sepultamento?.Responsavel2?.Uf?.Sigla}}</span>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <span class="style3">
+    <strong>Compromisso</strong> - Comprometem-se
+    a apresentar a GUIA DE SEPULTAMENTO ou a CERTIDÃO DE ÓBITO expedida pelo CARTÓRIO
+    DE REGISTRO CIVIL, distrito de _________________________________, de conformidade com os artigos de nº 78 e 79 da
+    lei nº 6.015, de 31/12/1973 e assumem totais responsabilidades, de quaisquer espécies,
+    no cumprimento do prazo agora estabelecido, isto é, de _____ dia(s) a contar de
+    _____/_____/_______, declaram ainda plenamente conhecedores das penalidades que
+    estão sujeitos pelo não cumprimento da obrigatoriedade de apresentação da GUIA DE
+    SEPULTAMENTO ou da CERTIDÃO DE ÓBITO, até o dia _____/_____/_______.
+  </span>
+  <br />
+  <br />
+  <span class="style3">
+    1º)_______________________________________________________________<br />
+    2º)_______________________________________________________________
+  </span>
+  <br />
+  <br />
+  <span class="style3">TESTEMUNHAS:</span>
+  <br />
+  <br />
+  1º) <span class="style3">{{sepultamento?.Testemunha1?.Nome}}</span>
+  &nbsp; RG
+  <span class="style3">{{sepultamento?.Testemunha1?.Rg}}</span>
+  &nbsp;TEL.
+  <span class="style3">{{sepultamento?.Testemunha1?.Telefone}}</span>
+  &nbsp;____________________________________________________
+  <br />
+  2º)
+  <span class="style3">{{sepultamento?.Testemunha2?.Nome}}</span>
+  &nbsp; RG
+  <span class="style3">{{sepultamento?.Testemunha2?.Rg}}</span>
+  &nbsp;TEL.<span class="style3">{{sepultamento?.Testemunha2?.Telefone}}</span>
+  &nbsp;_____________________________________________________
+  <br />
+  <br />
+  <table width="100%">
+    <tr>
+      <td>
+        __________________________________________________<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Coordenação
+      </td>
+      <td>
+        _________________________________________________<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Coordenação
+      </td>
+    </tr>
+  </table>
+  <br />
+  <span class="style3">
+    <strong>COORDENAÇÃO DO CEMITÉRIO PÚBLICO DE QUINTAS DOS LÁZAROS - CELAZ</strong>
+    <br />
+    End.: Lad. de Baixa de Quintas, s/n - Bx. de Quintas - Telefone: (71) 3381-0131
+  </span>
+</div>

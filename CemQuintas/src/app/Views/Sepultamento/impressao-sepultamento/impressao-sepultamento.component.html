@@ -1,0 +1,152 @@
+<button pButton (click)="printDiv()" type="button" label="Imprimir" icon="pi pi-print" class="ui-button-raised ui-button-rounded"></button>
+&nbsp;&nbsp;
+<button pButton (click)="voltar()" type="button" label="Voltar" icon="pi pi-undo" class="ui-button-raised ui-button-rounded"></button>
+
+<div id="divSepultamento">
+  <table width="100%">
+    <tr>
+      <td>
+        <span style="font-size: 14pt"><strong>CEMITÉRIO QUINTA DOS LÁZAROS </strong></span>
+      </td>
+      <td align="right">
+        {{data | date: 'dd/MM/yyyy HH:mm'}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Sepultamento
+      </td>
+      <td align="right">
+      </td>
+    </tr>
+  </table>
+  <hr />
+  <table>
+    <tr>
+      <td>
+        Nº Controle:
+      </td>
+      <td>
+        <span style="font-weight:bold;">{{sepultamento?.NumeroControle}}/{{sepultamento?.Ano}}</span>
+        &nbsp; Nome:
+        <span style="font-weight:bold;">{{sepultamento?.Cidadao?.Nome}}</span>&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Idade:
+      </td>
+      <td>
+        {{sepultamento?.Cidadao?.Idade}} {{sepultamento?.Cidadao?.ComplementoIdade}}
+        &nbsp;&nbsp; Raça:
+        {{sepultamento?.Cidadao?.Raca?.Descricao}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Sexo:
+      </td>
+      <td>
+        {{sepultamento?.Cidadao?.Sexo?.Descricao}}
+        &nbsp;&nbsp; Naturalidade:
+        {{sepultamento?.Cidadao?.Cidade?.Descricao}}-{{sepultamento?.Cidadao?.Cidade?.Uf?.Sigla}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Número IML:
+      </td>
+      <td>
+        {{sepultamento?.NumeroIml}}
+      </td>
+    </tr>
+  </table>
+  <hr />
+  <strong>GUIA</strong>
+  <div>
+    <table cellspacing="0" style="border-collapse:collapse;">
+      <tr>
+        <td>Cartório:</td>
+        <td>
+          {{sepultamento?.Cartorio?.Nome}}
+        </td>
+      </tr>
+      <tr>
+        <td>Distrito:</td>
+        <td>
+          {{sepultamento?.Cartorio?.Distrito}}
+        </td>
+      </tr>
+      <tr>
+        <td>Termo:</td>
+        <td>{{sepultamento?.Termo}}</td>
+      </tr>
+      <tr>
+        <td>Livro:</td>
+        <td>{{sepultamento?.Livro}}</td>
+      </tr>
+      <tr>
+        <td>Folhas:</td>
+        <td>{{sepultamento?.Folhas}}</td>
+      </tr>
+      <tr>
+        <td>Outras Informações:</td>
+        <td>{{sepultamento.OutrasInformacoes}}</td>
+      </tr>
+      <tr>
+        <td>Data Guia:</td>
+        <td>{{sepultamento?.DataGuia | date:'dd/MM/yyyy'}}</td>
+      </tr>
+      <tr>
+        <td>Falecimento:</td>
+        <td>{{sepultamento?.DataHoraFalecimento | date:'dd/MM/yyyy HH:mm'}}</td>
+      </tr>
+      <tr>
+        <td>Causa Óbito:</td>
+        <td>{{sepultamento?.CausaObito}}</td>
+      </tr>
+      <tr>
+        <td>CRM Médico:</td>
+        <td>{{sepultamento?.Crm}}</td>
+      </tr>
+      <tr>
+        <td>Nome do médico</td>
+        <td>{{sepultamento?.NomeMedico}}</td>
+      </tr>
+      <tr>
+        <td>Lugar de Óbito:</td>
+        <td>{{sepultamento?.LugarObito}}</td>
+      </tr>
+    </table>
+  </div>
+  <br />
+  <strong>SEPULTAMENTO:</strong>
+  <div>
+    <table cellspacing="0" style="border-collapse:collapse;">
+      <tr *ngIf="sepultamento.CovaCarneira=='1'">
+        <td>Quadro:</td>
+        <td>
+          {{sepultamento?.Quadro?.Descricao}}
+        </td>
+      </tr>
+      <tr *ngIf="sepultamento.CovaCarneira=='1'">
+        <td>Cova:</td>
+        <td>{{sepultamento?.Cova}}</td>
+      </tr>
+      <tr *ngIf="sepultamento.CovaCarneira=='2'">
+        <td>Quadra:</td>
+        <td>
+          {{sepultamento?.Quadra?.Descricao}}
+        </td>
+      </tr>
+      <tr *ngIf="sepultamento.CovaCarneira=='2'">
+        <td>Carneira:</td>
+        <td>{{sepultamento?.Carneira}}</td>
+      </tr>
+      <tr>
+        <td>Sepultamento:</td>
+        <td>{{sepultamento?.DataHoraSepultamento | date:'dd/MM/yyyy HH:mm'}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
