@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CemQuintas", "CemQuintas\", "{7D5BE051-02F3-46B1-911F-DC03E154F220}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_54554"
+		Debug.AspNetCompiler.PhysicalPath = "CemQuintas\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54554\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_54554"
+		Release.AspNetCompiler.PhysicalPath = "CemQuintas\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54554\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "54554"
+		SlnRelativePath = "CemQuintas\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CemQuintas.OR", "CemQuintas.OR\CemQuintas.OR.csproj", "{354E3593-0126-4C12-9814-1A6625A05207}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CemQuintas.Interface", "CemQuintas.Interface\CemQuintas.Interface.csproj", "{980A5261-4AAB-4D77-B838-D370EBD66ED0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CemQuintas.DAO", "CemQuintas.DAO\CemQuintas.DAO.csproj", "{C40D3858-4D16-4277-AC0D-C8E3CC6F7147}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CemQuintas.API", "CemQuintas.API\CemQuintas.API.csproj", "{81D59E54-864F-43D9-AF08-8CB5C23EFABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CemQuintas.BO", "CemQuintas.BO\CemQuintas.BO.csproj", "{6E14FFBB-17BE-4BC0-B238-9E1D4C50EFF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D5BE051-02F3-46B1-911F-DC03E154F220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D5BE051-02F3-46B1-911F-DC03E154F220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D5BE051-02F3-46B1-911F-DC03E154F220}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D5BE051-02F3-46B1-911F-DC03E154F220}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{354E3593-0126-4C12-9814-1A6625A05207}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{354E3593-0126-4C12-9814-1A6625A05207}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{354E3593-0126-4C12-9814-1A6625A05207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{354E3593-0126-4C12-9814-1A6625A05207}.Release|Any CPU.Build.0 = Release|Any CPU
+		{980A5261-4AAB-4D77-B838-D370EBD66ED0}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{980A5261-4AAB-4D77-B838-D370EBD66ED0}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{980A5261-4AAB-4D77-B838-D370EBD66ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{980A5261-4AAB-4D77-B838-D370EBD66ED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C40D3858-4D16-4277-AC0D-C8E3CC6F7147}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{C40D3858-4D16-4277-AC0D-C8E3CC6F7147}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{C40D3858-4D16-4277-AC0D-C8E3CC6F7147}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C40D3858-4D16-4277-AC0D-C8E3CC6F7147}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81D59E54-864F-43D9-AF08-8CB5C23EFABC}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{81D59E54-864F-43D9-AF08-8CB5C23EFABC}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{81D59E54-864F-43D9-AF08-8CB5C23EFABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81D59E54-864F-43D9-AF08-8CB5C23EFABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E14FFBB-17BE-4BC0-B238-9E1D4C50EFF7}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{6E14FFBB-17BE-4BC0-B238-9E1D4C50EFF7}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{6E14FFBB-17BE-4BC0-B238-9E1D4C50EFF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E14FFBB-17BE-4BC0-B238-9E1D4C50EFF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4DA2E7D1-3767-4B20-99A5-716D291A2184}
+	EndGlobalSection
+EndGlobal
